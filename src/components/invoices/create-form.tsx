@@ -8,7 +8,7 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { createInvoice, State } from "@/lib/actions";
 import { useActionState } from "react";
 
@@ -140,13 +140,19 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
-        <Link
-          href="/dashboard/invoices"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+        <Button
+          className="bg-gray-100 hover:bg-gray-200 text-gray-600"
+          size="lg"
         >
-          Cancel
-        </Link>
-        <Button type="submit">Create Invoice</Button>
+          <Link href="/dashboard/invoices">Cancel</Link>
+        </Button>
+        <Button
+          type="submit"
+          className="bg-blue-500 text-white hover:bg-blue-400"
+          size="lg"
+        >
+          Create Invoice
+        </Button>
       </div>
     </form>
   );

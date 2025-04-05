@@ -1,24 +1,21 @@
 "use client";
 
-import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
-} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { Button } from "../ui/button";
+import { Files, House, Users } from "lucide-react";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  { name: "Home", href: "/dashboard", icon: HomeIcon },
+  { name: "Home", href: "/dashboard", icon: House },
   {
     name: "Invoices",
     href: "/dashboard/invoices",
-    icon: DocumentDuplicateIcon,
+    icon: Files,
   },
-  { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
+  { name: "Customers", href: "/dashboard/customers", icon: Users },
 ];
 
 export default function NavLinks() {
@@ -29,19 +26,22 @@ export default function NavLinks() {
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <Link
+          <Button
             key={link.name}
-            href={link.href}
             className={clsx(
-              "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+              "grow bg-gray-50 hover:bg-sky-100 hover:text-blue-600 text-gray-600  md:flex-none md:justify-start",
               {
                 "bg-sky-100 text-blue-600": pathname === link.href,
               }
             )}
+            size="lg"
+            asChild
           >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
+            <Link href={link.href}>
+              <LinkIcon />
+              <p className="hidden md:block">{link.name}</p>
+            </Link>
+          </Button>
         );
       })}
     </>

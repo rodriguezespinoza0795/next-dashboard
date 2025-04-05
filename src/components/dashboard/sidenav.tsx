@@ -1,8 +1,9 @@
 import Link from "next/link";
 import NavLinks from "@/components/dashboard/nav-links";
 import AcmeLogo from "@/components/AcmeLogo";
-import { PowerIcon } from "@heroicons/react/24/outline";
 import { signOut } from "@/auth.config";
+import { Button } from "../ui/button";
+import { PowerIcon } from "lucide-react";
 
 export default function SideNav() {
   return (
@@ -24,10 +25,13 @@ export default function SideNav() {
             await signOut({ redirectTo: "/" });
           }}
         >
-          <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-            <PowerIcon className="w-6" />
+          <Button
+            className="bg-gray-50 hover:bg-sky-100 hover:text-blue-600 text-gray-600 w-full  md:flex-none md:justify-start"
+            size="lg"
+          >
+            <PowerIcon />
             <div className="hidden md:block">Sign Out</div>
-          </button>
+          </Button>
         </form>
       </div>
     </div>

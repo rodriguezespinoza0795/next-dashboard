@@ -1,4 +1,4 @@
-import { generateYAxis } from "@/lib/utils";
+import { generateYAxis } from "@/utils/functions";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { lusitana } from "@/config/fonts";
 import { Revenue } from "@/lib/definitions";

@@ -8,7 +8,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { updateInvoice, State } from "@/lib/actions";
 import { useActionState } from "react";
 
@@ -150,13 +150,19 @@ export default function EditInvoiceForm({
         </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
-        <Link
-          href="/dashboard/invoices"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+        <Button
+          className="bg-gray-100 hover:bg-gray-200 text-gray-600"
+          size="lg"
         >
-          Cancel
-        </Link>
-        <Button type="submit">Edit Invoice</Button>
+          <Link href="/dashboard/invoices">Cancel</Link>
+        </Button>
+        <Button
+          type="submit"
+          className="bg-blue-500 text-white hover:bg-blue-400"
+          size="lg"
+        >
+          Edit Invoice
+        </Button>
       </div>
     </form>
   );
