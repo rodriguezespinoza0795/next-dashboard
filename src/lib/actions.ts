@@ -11,9 +11,11 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 const FormSchema = z.object({
   id: z.string(),
-  customerId: z.string({
-    invalid_type_error: "Please select a customer.",
-  }),
+  customerId: z
+    .string({
+      invalid_type_error: "Please select a customer.",
+    })
+    .min(1, { message: "Please select a customer." }),
   amount: z.coerce
     .number()
     .gt(0, { message: "Please enter an amount greater than $0." }),
@@ -42,6 +44,8 @@ export async function createInvoice(prevState: State, formData: FormData) {
     amount: formData.get("amount"),
     status: formData.get("status"),
   });
+
+  console.log("validatedFields", validatedFields);
 
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
