@@ -45,8 +45,6 @@ export async function createInvoice(prevState: State, formData: FormData) {
     status: formData.get("status"),
   });
 
-  console.log("validatedFields", validatedFields);
-
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
     return {
@@ -119,19 +117,16 @@ export async function deleteInvoice(id: string) {
   revalidatePath("/dashboard/invoices");
 }
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData
-) {
+export async function authenticate(data: { email: string; password: string }) {
   try {
-    await signIn("credentials", formData);
+    await signIn("credentials", data);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return "Invalid credentials.";
+          return { error: true, message: "Invalid credentials." };
         default:
-          return "Something went wrong.";
+          return { error: true, message: "Something went wrong." };
       }
     }
     throw error;
